@@ -4,7 +4,7 @@ provider "aws" {
 
 module "ecs_cluster" {
   source = "../.."
-  cluster_name = "testo"
+  cluster_name = "cls"
   cluster_settings = [
     {
     name = "containerInsights"
@@ -24,9 +24,9 @@ module "ecs_cluster" {
     }
   ]
   tags   = {
-    Name = "testo1"
-    Author      = "aut1"
-    Environment = "env1"
+    Name = "cls"
+    Author      = "Leon Mwandiringa"
+    Environment = "dev"
     Provisioner = "terraform"
     Region      = "us-east-2"
   }

@@ -1,7 +1,5 @@
 # AWS ECS Terraform module
 
-Terraform module built for Vodacom internal use by the Vodasure team.
-
 ECS configurations includes:
 
 - Cluster creation
@@ -13,8 +11,8 @@ ECS configurations includes:
 
 ```hcl
 module "ecs" {
-  source = "leonvodacom/ecscluster"
-  cluster_name = "ecscluster-test"
+  source = "git@github.com:leonmwandiringa/terraform-aws-ecscluster?ref=v1.0"
+  cluster_name = "cls"
   cluster_settings = var.cluster_settings
   fargate_capacity_providers = var.fargate_capacity_providers
   tags   = var.global_tags
@@ -57,7 +55,7 @@ No Modules.
 
 ## Authors
 
-Module authored and managed by [Leon_Mwandiringa](https://github.com/techadontech) from the [Vodasure Team].
+Module authored and managed by [Leon_Mwandiringa](https://github.com/leonmwandiringa).
 
 ## License
 
