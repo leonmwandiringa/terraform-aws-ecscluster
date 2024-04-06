@@ -52,11 +52,19 @@ variable "cluster_name" {
 }
 
 variable "fargate_capacity_providers" {
-  type = list(object({
+  type = list(string)
+  default = []
+  description = "fargate types capacity provider"
+}
+
+variable "default_capacity_provider_strategy" {
+  type = object({
     base = number
     weight = number
-    capacity_provider = string
-  }))
-  default = []
+  })
+  default = {
+    base = 1
+    weight = 100
+  }
   description = "fargate types capacity provider"
 }
