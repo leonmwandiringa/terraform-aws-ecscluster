@@ -8,8 +8,8 @@ resource "aws_ecs_cluster_capacity_providers" "default" {
     for_each = var.fargate_capacity_providers
     content {
       capacity_provider = fargate_capacity_providers.value
-      base              = default_capacity_provider_strategy.base
-      weight            = strategy.value.default_capacity_provider_strategy.weight
+      base              = var.default_capacity_provider_strategy.base
+      weight            = var.default_capacity_provider_strategy.weight
     }
   }
 
