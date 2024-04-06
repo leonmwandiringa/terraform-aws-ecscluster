@@ -1,18 +1,16 @@
-resource "aws_ecs_cluster_capacity_providers" "default" {
-  count = length(var.fargate_capacity_providers) > 0 ? 1 : 0
+resource "aws_ecs_capacity_provider" "default" {
+  count = var.auto_scaling_group_arn != null ? 1 : 0
+  name = "${var.cluster_name}-cp"
 
-  cluster_name = aws_ecs_cluster.default.name
-  capacity_providers = [for k, v in var.fargate_capacity_providers : try(v.capacity_provider, k)]
+  auto_scaling_group_provider {
+    auto_scaling_group_arn         = var.auto_scaling_group_arn
+    managed_termination_protection = var.managed_termination_protection
 
-  dynamic "default_capacity_provider_strategy" {
-    for_each = var.fargate_capacity_providers
-    iterator = strategy
-
-    content {
-      capacity_provider = try(strategy.value.capacity_provider, strategy.key)
-      base              = try(strategy.value.default_capacity_provider_strategy.base, null)
-      weight            = try(strategy.value.default_capacity_provider_strategy.weight, null)
+    managed_scaling {
+      maximum_scaling_step_size = var.managed_scaling["maximum_scaling_step_size"]
+      minimum_scaling_step_size = var.managed_scaling["minimum_scaling_step_size"]
+      status                    = var.managed_scaling["status"]
+      target_capacity           = var.managed_scaling["target_capacity"]
     }
   }
-
 }
