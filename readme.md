@@ -1,6 +1,6 @@
-# AWS ECS Terraform module
+# AWS listebner-tg Terraform module
 
-ECS configurations includes:
+listener-tg configurations includes:
 
 - Cluster creation
 - Cluster Settings
@@ -10,8 +10,8 @@ ECS configurations includes:
 ## Basic Usage
 
 ```hcl
-module "ecs" {
-  source = "git@github.com:leonmwandiringa/terraform-aws-ecscluster?ref=v1.0"
+module "listebner-tg" {
+  source = "git@github.com:leonmwandiringa/terraform-aws-listener-tg?ref=v1.0"
   cluster_name = "cls"
   cluster_settings = var.cluster_settings
   fargate_capacity_providers = var.fargate_capacity_providers
@@ -41,16 +41,16 @@ No Modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | tags | (Required) module global tags. | `map(any)` | `null` | yes |
-| cluster_name | (Required) ECS cluster name. | `string` | `null` | yes |
-| cluster_settings | (Optional) a list map of ecs setting to enable. | `list(object({name = string, value = string}))` | `null` | no |
+| cluster_name | (Required) listebner-tg cluster name. | `string` | `null` | yes |
+| cluster_settings | (Optional) a list map of listebner-tg setting to enable. | `list(object({name = string, value = string}))` | `null` | no |
 | fargate_capacity_providers | (Optional) Fargates provider configuration. | `list(object({base = number, weight = number, capacity_provider = string}))` | `null` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| cluster\_id | ECS Cluster ID. |
-| cluster\_name | Name of ECS Cluster created. |
+| cluster\_id | listebner-tg Cluster ID. |
+| cluster\_name | Name of listebner-tg Cluster created. |
 | cluster\_arn | ARN of cluster created. |
 
 ## Authors
