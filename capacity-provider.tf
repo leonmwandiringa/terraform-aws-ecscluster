@@ -1,5 +1,5 @@
 resource "aws_ecs_capacity_provider" "default" {
-  count = length(var.fargate_capacity_providers) > 0 ? 0 : 1
+  count = var.auto_scaling_group_arn == null ? 0 : 1
   name = "${var.cluster_name}-cp"
 
   auto_scaling_group_provider {
